@@ -6,10 +6,6 @@ class SplashScreen extends Component {
         super(props);
     }
 
-   /*  static navigationOptions = {
-        title: 'Spalsh Screen'
-    } */
-
     componentDidMount() {
         this.leaveSplash = setTimeout(() => {
             this.props.navigation.navigate('Login');

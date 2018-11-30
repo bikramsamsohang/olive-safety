@@ -10,6 +10,8 @@
     "native-base": "^2.8.1",
     "react": "16.6.1",
     "react-native": "0.57.5",
+    "react-native-paper": "^2.2.8",
+    "react-native-swipe-list-view": "^1.5.0",
     "react-navigation": "^2.0.0-rc.1"
   },
   "devDependencies": {
