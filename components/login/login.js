@@ -1,89 +1,143 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, Image } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import colors from '../../colors';
+import {
+    StyleSheet,
+    BackHandler,
+    Alert,
+    Image,
+    
+} from 'react-native';
+import {
+    Container,
+    Content,
+    Button,
+    Item,
+    Label,
+    Input,
+    Form,
+    Text,
+    H1,
+    Left,
+    Icon
+} from "native-base";
+
+//Components
+import SpalshScreen from '../splash-screen/slpash-screen';
 
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showLogin: false,
+            backPressed: false
+        };
+    }
+    
+    componentDidMount(){
     }
 
     gotoSignup = ()=> {
         this.props.navigation.navigate('Signup');
     }
 
+    componentDidMount() {
+        this.leaveSplash = setTimeout(() => {
+            this.setState({showLogin: true})
+        }, 1000);
+        BackHandler.addEventListener('hardwareBackPress', this.backPress);
+    }
+
+    backPress = ()=> {
+        if(!this.state.backPressed) {
+            this.setState({
+                backPressed: true
+            });
+            Alert.alert('Press back again to exit');
+            return true;
+        }
+    };
+
     render() {
-        return (
-            <View style={styles.wrapper}>
-
-                <View style={styles.logoWrapper}>
-                    <Image
-                    style={styles.logo}
-                    source={require('../../assets/olive.png')} ></Image>
-                </View>
-
-                <View>
-                    <Text 
-                    style={styles.helloText}>
-                        Hello
-                    </Text>
-                    <TextInput              
-                    style={styles.inputBox}               
-                    label="Email address"
-                    placeholderTextColor="white"
-                    underlineColor='#abada4'
-                    ></TextInput>
-                    <TextInput             
-                    style={styles.inputBox}
-                    secureTextEntry={true}
-                    label="Password"
-                    underlineColor='#abada4'
-                    ></TextInput>
-                </View>
-            </View>
+        return (      
+            <Container style={styles.container}>   
+                <LoginElements />
+            </Container>
         )
     }
 }
 
+const LoginElements = () => {
+    return(
+        <React.Fragment>
+            <Image                               
+            source={require('../../assets/logo.png')}/>
+                    <Form>
+                        <H1 style={styles.headText}>Hello</H1>
+                        <Item 
+                        floatingLabel>
+                            <Label>Username</Label>
+                            <Input />
+                        </Item>
+
+                        <Item 
+                        floatingLabel>
+                            <Label>Password</Label>                            
+                            <Input 
+                            secureTextEntry />
+                        </Item>
+                    </Form>
+                    <Container 
+                    style={styles.buttonLinkWrapper}>                        
+                        <Button rounded light >
+                            <Text uppercase={false}>Login</Text>
+                        </Button>
+                        
+                        <Text
+                        style={styles.passwordLink}>
+                            Forgot password?
+                        </Text>
+                    </Container>   
+                <Container
+                style={styles.bottom}>
+                    <Text
+                    style={styles.text}>
+                        Still Without account?
+                    </Text>
+                    <Text>
+                        Create one
+                    </Text>
+                </Container>
+        </React.Fragment>    
+    )
+};
+
 const styles = StyleSheet.create({
-    wrapper: {
+    container: {
+        padding: 20,
         flex: 1,
-        flexDirection: 'column',
-        backgroundColor: '#240D5F',
-        padding: 20
+        backgroundColor: colors.backGround
     },
-    logoWrapper: {
-        flex: 0.5,
-        alignItems: 'center',        
-    },
-    logo: {
-        height: 50,
-        width: 100
+    headText: {
+        color: colors.headText
     },
     loginWrapper: {
+        backgroundColor: colors.backGround
+    },
+    buttonLinkWrapper: {
         flexDirection: 'row',
-        flexWrap:'wrap'
+        backgroundColor: colors.backGround,
+        marginTop: 50
     },
-    helloText: {
-        color: '#f4d742',
-        fontSize: 25
+    passwordLink: {
+        marginLeft: 100,
+        color: colors.forgotPasswordLink
     },
-    inputBox: {
-        color: '#abada4',
-        backgroundColor: 'transparent',
-        marginTop: 10,
+    bottom: {
+        flexDirection: 'row',
+        backgroundColor: colors.transparent
     },
-    login: {
-        fontSize: 20,
-        color: 'blue'
-    },
-    forgotPassword: {
-        color: 'white'
-    },
-    accountText: {
-        color: 'grey'
-    },
-    accountLink: {
-        color: 'yellow'
+    text: {
+        color: colors.textColor
     }
 })
 

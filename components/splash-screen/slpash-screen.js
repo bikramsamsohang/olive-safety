@@ -1,38 +1,28 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { 
+    Container
+} from 'native-base';
+import { StyleSheet } from 'react-native';
+import colors from '../../colors';
 
 class SplashScreen extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount() {
-        this.leaveSplash = setTimeout(() => {
-            this.props.navigation.navigate('Login');
-        }, 1000);
-    }
-
     render() {
         return(
-            <View style={styles.wrapper}>
-                <Text style={styles.title}>
-                    Splash Screen
-                </Text>
-                <Text style={styles.subtitle}>
-                    Presented by Olive Safety.
-                </Text>
-            </View>
+            <Container
+            style={styles.wrapper}>
+
+            </Container>
         )
     }
 }
 
 const styles = StyleSheet.create({
     wrapper: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: '#240D5F',
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: colors.backGround
     },
     title: {
         flex: 1,
