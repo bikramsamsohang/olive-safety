@@ -8,7 +8,7 @@ export default class App extends React.Component {
     super(props);
   }
   componentDidMount() {
-    SplashScreen.hide(true);
+    SplashScreen.hide();
   }
 
   render() {

@@ -1,10 +1,12 @@
-const colors = {
-    backGround: '#10245C',
-    link: '#10245C',
-    forgotPasswordLink: '#ECEEF2',
-    transparent: 'transparent',
-    textColor: '#787993',
-    headText: '#F8EA4A'
+const Colors = {
+  primary: '#10245C',
+  secondary: '#929292',
+  link: '#F8EA4A',
+  text: '#787993',
+  placeholder :'#787993',
+  grayUltraLight: '#F7FAFA',
+  white: '#FFFFFF',
+  transparent: 'transparent'
 };
 
-export default colors;
+export default Colors;

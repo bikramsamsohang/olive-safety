@@ -1,76 +1,79 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import {StyleSheet, Image} from 'react-native';
+import {
+    Container, Header,
+    Title,
+    Content,
+    Button,
+    Item,
+    Label,
+    Input,
+    Form,
+    Text,
+    H1,
+    Left,
+    Icon,
+    Body,
+    Right,
+    H2,
+    Col, Row, Grid
+} from "native-base";
 
+import Styles from './../../styles';
+import Colors from '../../colors';
 class ForgotPassword extends Component {
     render() {
         return (
-        <View style={styles.wrapper}>
-            <View style={styles.topSection}>
-                <View style={styles.logo}>
+            <Container style={Styles.wrapper}>
+                <Container style={Styles.logoWrapper}>
                     <Image
-                    style={{width: 100, height: 100}}
-                    source={require('../../assets/arrow.png')} />
-                </View>                
-                <Button                            
-                    style={styles.backIcon}
-                    icon={require('../../assets/arrow.png')} />
-                <Text>Forgot Password</Text>
-                <View style={styles.sendLink}>
-                    <Text>We'll send you a </Text>
-                    <TouchableOpacity>
-                        <Text>Link</Text>
-                    </TouchableOpacity>  
-                    <Text>to reset it.</Text>
-                </View>
-                <TextInput 
-                    label="Email address"
-                    ></TextInput> 
-                <Button 
-                style={styles.button}
-                mode= 'outlined'>
-                    Reset
-                </Button>   
-            </View>
-            <View style={styles.bottomSection}>
-                <Text>Know Your Password.</Text>
-                <TouchableOpacity>
-                    <Text>Get started</Text>
-                </TouchableOpacity>                
-            </View>        
-        </View>
-        )
-    }
-}
+                    style={Styles.logo}
+                    source={require('../../assets/olive.png')} ></Image>
+                </Container>
 
-const styles = StyleSheet.create({
-    wrapper: {
-        padding: 20,
-        flex: 1,
-        backgroundColor: '#240D5F',
-        flexDirection: 'column'
-    },
-    topSection: {
-        flex: 1
-    },  
-    bottomSection: {
-        justifyContent: 'center',
-        flexDirection: 'row'
-    },
-    sendLink: {
-        flexDirection: 'row'
-    },
-    backIcon: {
-        height: 50,
-        width: 50
-    },
-    logo: {
-        justifyContent: 'center',
-    },
-    button: {
-        width: 100,
-        borderRadius: 10
-    }
-});
+                <Content style={{ margin: 12 }}>
+                    <H2 style={Styles.title}>Forget Password</H2>
+                    <Row>
+                        <Text>
+                            We'll send you a
+                        </Text>
+                        <Text >
+                            Link
+                        </Text>
+                        <Text >
+                            to reset it.
+                        </Text>
+                    </Row>
+                    <Form>
+                        <Item style={Styles.formControl} floatingLabel>
+                        <Label>Email address</Label>
+                        <Input style={Styles.formText}  />
+                        </Item>
+                    </Form>
+                    <Row  style={{ marginTop: 40 }}>
+                        <Col>
+                            <Button rounded style={Styles.loginButton}>
+                            <Text style={{ color:Colors.primary}}>Reset</Text>
+                            </Button>
+                        </Col>
+                    </Row>                    
+                </Content>
+
+                <Row>
+                    <Col>
+                        <Text>
+                            Know your Password.
+                        </Text>
+                    </Col>
+                    <Col>
+                        <Text>
+                            Get Started
+                        </Text>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }        
+}
 
 export default ForgotPassword;

@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import colors from '../../colors';
+import {StyleSheet, Image} from 'react-native';
 import {
-    StyleSheet,
-    BackHandler,
-    Alert,
-    Image,
-    
-} from 'react-native';
-import {
-    Container,
+    Container, Header,
+    Title,
     Content,
     Button,
     Item,
@@ -18,127 +12,49 @@ import {
     Text,
     H1,
     Left,
-    Icon
+    Icon,
+    Body,
+    Right,
+    H2,
+    Col, Row, Grid
 } from "native-base";
 
-//Components
-import SpalshScreen from '../splash-screen/slpash-screen';
-
+import Styles from './../../styles';
+import Colors from '../../colors';
 class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showLogin: false,
-            backPressed: false
-        };
-    }
-    
-    componentDidMount(){
-    }
-
-    gotoSignup = ()=> {
-        this.props.navigation.navigate('Signup');
-    }
-
-    componentDidMount() {
-        this.leaveSplash = setTimeout(() => {
-            this.setState({showLogin: true})
-        }, 1000);
-        BackHandler.addEventListener('hardwareBackPress', this.backPress);
-    }
-
-    backPress = ()=> {
-        if(!this.state.backPressed) {
-            this.setState({
-                backPressed: true
-            });
-            Alert.alert('Press back again to exit');
-            return true;
-        }
-    };
-
     render() {
-        return (      
-            <Container style={styles.container}>   
-                <LoginElements />
-            </Container>
-        )
-    }
-}
+        return (
+            <Container style={Styles.wrapper}>
+                <Container style={Styles.logoWrapper}>
+                    <Image
+                    style={Styles.logo}
+                    source={require('../../assets/olive.png')} ></Image>
+                </Container>
 
-const LoginElements = () => {
-    return(
-        <React.Fragment>
-            <Image                               
-            source={require('../../assets/logo.png')}/>
+                <Content style={{ margin: 12 }}>
+                <H2 style={Styles.title}>Hello</H2>
                     <Form>
-                        <H1 style={styles.headText}>Hello</H1>
-                        <Item 
-                        floatingLabel>
-                            <Label>Username</Label>
-                            <Input />
+                        <Item style={Styles.formControl} floatingLabel>
+                          <Label>Username</Label>
+                          <Input style={Styles.formText} />
                         </Item>
-
-                        <Item 
-                        floatingLabel>
-                            <Label>Password</Label>                            
-                            <Input 
-                            secureTextEntry />
+                        <Item style={Styles.formControl} floatingLabel>
+                          <Label>Password</Label>
+                          <Input style={Styles.formText} secureTextEntry />
                         </Item>
                     </Form>
-                    <Container 
-                    style={styles.buttonLinkWrapper}>                        
-                        <Button rounded light >
-                            <Text uppercase={false}>Login</Text>
-                        </Button>
-                        
-                        <Text
-                        style={styles.passwordLink}>
-                            Forgot password?
-                        </Text>
-                    </Container>   
-                <Container
-                style={styles.bottom}>
-                    <Text
-                    style={styles.text}>
-                        Still Without account?
-                    </Text>
-                    <Text>
-                        Create one
-                    </Text>
-                </Container>
-        </React.Fragment>    
-    )
-};
-
-const styles = StyleSheet.create({
-    container: {
-        padding: 20,
-        flex: 1,
-        backgroundColor: colors.backGround
-    },
-    headText: {
-        color: colors.headText
-    },
-    loginWrapper: {
-        backgroundColor: colors.backGround
-    },
-    buttonLinkWrapper: {
-        flexDirection: 'row',
-        backgroundColor: colors.backGround,
-        marginTop: 50
-    },
-    passwordLink: {
-        marginLeft: 100,
-        color: colors.forgotPasswordLink
-    },
-    bottom: {
-        flexDirection: 'row',
-        backgroundColor: colors.transparent
-    },
-    text: {
-        color: colors.textColor
-    }
-})
+                    <Row  style={{ marginTop: 40 }}>
+                        <Col>
+                            <Button rounded style={Styles.loginButton}>
+                            <Text style={{ color:Colors.primary}}>Login</Text>
+                            </Button>
+                        </Col>
+                        <Col><Text style={{ marginTop: 11, color:Colors.white, textAlign: 'right' }}>Forgot password ?</Text></Col>
+                    </Row>
+                </Content>
+            </Container>
+        )
+    }        
+}
 
 export default Login;
